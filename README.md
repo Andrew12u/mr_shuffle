@@ -1,28 +1,28 @@
 =================
 Problem Statement
 =================
-1. Create a microservice that stores and shuffles card decks.
-*  A card may be represented as a simple string such as “5-heart”, or 
-   “K-spade”.
-*  A deck is an ordered list of 52 standard playing cards.
+Create a microservice that stores and shuffles card decks.
+A card may be represented as a simple string such as “5-heart”, or 
+“K-spade”.
+A deck is an ordered list of 52 standard playing cards.
 
 Expose a RESTful interface that allows a user to:
 
-2. PUT an idempotent request for the creation of a new named deck.  
-*  New decks are created in some initial sorted order.
-3. POST a request to shuffle an existing named deck.
-4. GET a list of the current decks persisted in the service.
-5. GET a named deck in its current sorted/shuffled order.
-6. DELETE a named deck.
+1. PUT an idempotent request for the creation of a new named deck.  
+   New decks are created in some initial sorted order.
+2. POST a request to shuffle an existing named deck.
+3. GET a list of the current decks persisted in the service.
+4. GET a named deck in its current sorted/shuffled order.
+5. DELETE a named deck.
 
 Design your own data and API structure(s) for the deck.
 
-7. Persist the decks in-memory only, but stub the persistence layer such 
+6. Persist the decks in-memory only, but stub the persistence layer such 
    that it can be later upgraded to a durable datastore.
 
-8. Implement a simple shuffling algorithm that simply randomizes the 
+7. Implement a simple shuffling algorithm that simply randomizes the 
    deck in-place.
-9. Implement a more complex algorithm that simulates hand-shuffling, 
+8. Implement a more complex algorithm that simulates hand-shuffling, 
    i.e. splitting the deck in half and interleaving the two halves, 
    repeating the process multiple times.
    Allow switching the algorithms at deploy-time only via configuration.
@@ -37,7 +37,7 @@ Setup
 3. Install Gradle
 4. Download this repo
 5. Configure gradle.properties to point to Jetty standalone server
-6. From command line "gradle deploy"
+6. From command line navigate to mr_shuffle's directory and "gradle deploy"
 7. Navigate to Jetty standalone server directory and "java -jar start.jar"
 
 
