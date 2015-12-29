@@ -4,7 +4,7 @@ apply plugin: 'war'
 sourceCompatibility     = 1.8          //This app was developed using java 1.8
 version                 = 1.0          //This is for the first release
 project.webAppDirName   = 'WebContent' //The web directory
-war.baseName            = 'mr_shuffle' //war file name
+war.baseName            = 'mr_shuffle' 
 
 repositories{
   mavenCentral() 
@@ -39,12 +39,10 @@ sourceSets{
     }
   }
 }
-//sourceSets.main.compileClasspath.each { println it }
-//sourceSets.main.runtimeClasspath.each{println it}
 
 tasks.withType(Test) {
     scanForTestClasses = false
-    include "**/*Spec.class" // whatever Ant pattern matches your test class files
+    include "**/*Spec.class" 
 }
 
 test.testLogging.showStandardStreams=true
