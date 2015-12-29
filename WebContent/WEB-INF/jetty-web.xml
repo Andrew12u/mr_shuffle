@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty/Configure/EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure id="ctx" class="org.eclipse.jetty.webapp.WebAppContext">
+  <Call name="setAttribute">
+    <Arg>shuffleAlgorithm</Arg>
+    <Arg>quarterShuffle</Arg>
+  </Call>
+</Configure>
+

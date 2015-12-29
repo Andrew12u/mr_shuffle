@@ -1,0 +1,65 @@
+package com.aizu.servlets;
+
+import com.aizu.cards.Deck;
+import com.aizu.cards.Card;
+
+import java.io.IOException;
+
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.LinkedList;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Context;
+
+
+@Path("/dealer")
+public class DealerService {
+  HashMap<String,Deck> decks = new HashMap<String,Deck>();
+  HttpSession session;
+  Deck<Card> deck;
+
+
+  @GET
+  @Path("/get/{deckName}")
+  public Response getDeck(@PathParam("deckName") String deckName, @Context HttpServletRequest request){
+    return Response.status(200).entity(output).build();
+  }
+
+  @PUT 
+  @Path("/put/{deckName}")
+  public Response putDeck(@PathParam("deckName") String deckName, @Context HttpServletRequest request){
+    return Response.status(201).entity(output).build();
+  }
+
+
+  /*
+    =====================
+    Setup Deck
+    =====================
+  */
+  private List<Card> setupDeck(){
+    List<Card> llist = new LinkedList<Card>();
+    String[] faceCards = {"J","Q","K","A"};
+    String[] suits = {"spades","clubs","diamonds","hearts"};
+
+    for(int i=2; i<=10; i++){
+      for(int j=1; j<=4; j++){
+        llist.add(new Card(Integer.toString(i), suits[j-1], j, i));
+      }
+    }
+    for(int k=1; k<=4; k++){
+      for(int l=1; l<=4; l++){
+        llist.add(new Card(faceCards[k-1],suits[l-1], l, k+10));
+      }
+    }
+    return llist;
+  }
+
+}

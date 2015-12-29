@@ -1,0 +1,61 @@
+apply plugin: 'java' 
+apply plugin: 'war'
+
+sourceCompatibility     = 1.8          //This app was developed using java 1.8
+version                 = 1.0          //This is for the first release
+project.webAppDirName   = 'WebContent' //The web directory
+war.baseName            = 'mr_shuffle' //war file name
+
+repositories{
+  mavenCentral() 
+}
+
+dependencies{
+  //jackson dependency
+  compile group:'com.fasterxml.jackson.core', name:'jackson-core', version:'2.6.4'
+  //json api
+  compile group:'org.glassfish', name:'javax.json', version:'1.0.4'
+  compile group:'org.json', name:'json', version:'20151123'
+  //jetty dependency
+  compile group:'org.eclipse.jetty', name:'jetty-server', version:'9.3.6.v20151106'
+  //jersey dependency
+  compile group:'org.glassfish.jersey.containers', name:'jersey-container-servlet', version:'2.22.1'
+  //junit dependency
+  testCompile group:'junit', name:'junit', version:'4.12'
+  //logging dependencies
+  testCompile group: 'log4j', name: 'log4j', version: '1.2.17'
+}
+
+sourceSets{
+  main{
+    java{
+      srcDir 'src/main/'
+    }
+  }
+
+  test{
+    java{
+      srcDir 'src/test/'
+    }
+  }
+}
+//sourceSets.main.compileClasspath.each { println it }
+//sourceSets.main.runtimeClasspath.each{println it}
+
+tasks.withType(Test) {
+    scanForTestClasses = false
+    include "**/*Spec.class" // whatever Ant pattern matches your test class files
+}
+
+test.testLogging.showStandardStreams=true
+
+task deploy(type: Copy){
+  from war.archivePath
+  into "${jettyServerPath}/webapps" 
+}
+
+task deleteWar(type: Delete){
+  delete "${jettyServerPath}/webapps/${war.archiveName}" 
+}
+
+deploy.dependsOn build,deleteWar
