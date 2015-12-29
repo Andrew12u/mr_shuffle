@@ -72,7 +72,7 @@ Shuffling
 =================
 1. To change shuffle algorithm alter ./WebContent/WEB-INF/jetty-web.xml
    leave <Arg>shuffleAlgorithm</Arg> as-is but you can change the second arg to "quarterShuffle", 
-   "mongeanShufflea", "someRandomValue".
+   "mongeanShuffle", "someRandomValue".
    
    "someRandomValue" (or any other value) results in the default shuffle algorithm which is a 
    hand shuffle (divide deck into two and interweave both halves)
